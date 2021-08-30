@@ -50,10 +50,25 @@ function createAxesHelper() {
   return axesHelper;
 }
 
+function getRandomColor() {
+  let colors = [
+    "dodgerblue",
+    "tomato",
+    "limegreen",
+    "rebeccapurple",
+    "gold",
+    "lavender",
+    "lightcoral",
+    "papayawhip",
+  ];
+  let randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
+
 function createCube() {
   let geometry = new THREE.BoxGeometry(4, 4, 4);
   let material = new THREE.MeshLambertMaterial({
-    color: "tomato",
+    color: getRandomColor(),
   });
   let mesh = new THREE.Mesh(geometry, material);
   return mesh;
@@ -64,7 +79,7 @@ function createSphere() {
   let geo = new THREE.SphereGeometry(4, 30, 30);
   //material
   let mat = new THREE.MeshLambertMaterial({
-    color: "dodgerblue",
+    color: getRandomColor(),
   });
   // mesh to combine
   let mesh = new THREE.Mesh(geo, mat);
@@ -72,7 +87,7 @@ function createSphere() {
 }
 
 function createLight() {
-  let light = new THREE.PointLight("white", 1);
+  let light = new THREE.PointLight("white", 1.25);
   return light;
 }
 
@@ -94,7 +109,7 @@ light.position.x = 10;
 light.position.y = 10;
 light.position.z = 10;
 
-sphere.position.x = 10;
+sphere.position.x = 20;
 
 scene.add(axesHelper); // add to add everything to scene like shape or shit
 scene.add(cube, sphere, light, lightHelper);
