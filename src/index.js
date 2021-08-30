@@ -111,16 +111,34 @@ light.position.z = 10;
 
 sphere.position.x = 20;
 
+let cubes = [];
+let cubeCount = 500;
+
+for (let i = 1; i <= cubeCount; i += 1) {
+  let c = createCube();
+  c.position.x = Math.random() * 400 - 200; // -200 to 200
+  c.position.y = Math.random() * 400 - 200;
+  c.position.z = Math.random() * 400 - 200;
+  cubes.push(c);
+}
+
+console.log(cubes.length);
+
 scene.add(axesHelper); // add to add everything to scene like shape or shit
-scene.add(cube, sphere, light, lightHelper);
+scene.add(cube, sphere, light, lightHelper, ...cubes);
 
 renderer.render(scene, camera);
 
 function animate() {
-  //   cube.rotation.x += 0.05;
-  //   cube.rotation.y += 0.05;
-  //   cube.position.z += 0.01;
-  light.position.x = 10;
+  cube.rotation.x += 0.05;
+  cube.rotation.y += 0.05;
+  cube.position.z += 0.01;
+
+  cubes.forEach(function (c) {
+    c.rotation.x -= 0.01;
+    c.rotation.y -= 0.01;
+    c.rotation.z -= 0.01;
+  });
   renderer.render(scene, camera);
   requestAnimationFrame(animate); // call the animation again and again
 }
