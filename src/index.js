@@ -101,7 +101,7 @@ function createLightHelper(light) {
 let renderer = createRenderer(); // to store the variables create in function above into single value
 let scene = createScene();
 let camera = createCamera();
-let axesHelper = createAxesHelper();
+//let axesHelper = createAxesHelper();
 let cube = createCube();
 let sphere = createSphere();
 let light = createLight();
@@ -128,7 +128,7 @@ for (let i = 1; i <= cubeCount; i += 1) {
 
 console.log(cubes.length);
 
-scene.add(axesHelper); // add to add everything to scene like shape or shit
+// scene.add(axesHelper); // add to add everything to scene like shape or shit
 scene.add(cube, sphere, light, lightHelper, ...cubes);
 
 renderer.render(scene, camera);
@@ -139,9 +139,9 @@ function animate() {
   cube.position.z += 0.01;
 
   cubes.forEach(function (c) {
-    c.rotation.x -= 0.01;
-    c.rotation.y -= 0.01;
-    c.rotation.z -= 0.01;
+    c.rotation.x -= 0.1;
+    c.rotation.y += 0.1;
+    c.rotation.z -= 0.1;
   });
   renderer.render(scene, camera);
   requestAnimationFrame(animate); // call the animation again and again
